@@ -8,12 +8,18 @@
     </head>
     <body>
         <div class="inner">
-            <div id="UsernameDiv"><p id="UsernameDisplay">IronOdum</p></div>
+            <div id="UsernameDiv"><p id="UsernameDisplay">{username}</p></div>
             <div class="divider"></div>
-            <button id="track">Track</button>
-<!--            <p id="status">Status</p>
+            <button id="instanttrack">Track</button>
             <div class="divider"></div>
-            <p style="border-bottom: rgb(100,100,100)">Last Check</p>-->
+            <button id="trackbtn">Track</button>
+            <div class="divider"></div>
+            <div id="nextCheckDiv">
+                <p id="nextCheck">0s</p>
+                <div id="progressbar">
+                    <span></span>
+                </div>
+            </div>
         </div>
     </body>
     <script src="../../js/script.js"></script>

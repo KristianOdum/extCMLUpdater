@@ -1,28 +1,66 @@
 body {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(192, 252, 255);
-    margin:0;
+    margin:0; padding:0;
     text-align: center; vertical-align: center; horiz-align: center;
-    border: 5px rgb(175, 175, 175);
+
 }
 .inner {
-    margin: 5px;
+    margin: 1px;
 }
 
 .divider {
     width: 100%;
     height: 0;
-    border-top: 1px dashed rgb(175, 175, 175);
-    margin: 5px 0 5px 0;
+    border-top: 1px solid rgb(220, 220, 220);
+    margin: 15px 0 15px 0;
 }
 
 #UsernameDiv {
+    margin: 0 10px 0 10px;
     font-size: 12px;
     font-weight: bold;
-    height: 20px;
 }
 
-#Track {
-    height: 20px;
+#instanttrack {
+    border-radius: 4px;
+    background-color: rgb(100,175,215);
+}
+
+#trackbtn {
+    border-radius: 4px;
+}
+
+button:focus {outline:0;}
+
+#lastCheck {
+    white-space: nowrap;
+}
+
+#nextCheckDiv {
+    margin: 0 10px 0 10px;
+}
+
+#nextCheck {
+    white-space: nowrap;
+}
+
+#progressbar {
+    height: 15px;
+    position: relative;
+    background: rgb(75,75,75);
+    border-radius: 1px;
+    padding: 2px;
+    box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+    margin: 0 2px 5px 0;
+}
+
+#progressbar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background-color: rgb(43,194,83);
+    box-shadow:
+            inset 0 2px 9px  rgba(255,255,255,0.3),
+            inset 0 -2px 6px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
 }

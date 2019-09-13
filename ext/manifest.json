@@ -1,6 +1,6 @@
 {
   "name": "CML Updater",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "manifest_version": 2,
   "description": "Automatically updates CML",
   "icons": {
@@ -9,27 +9,16 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
+  "permissions": [
+    "cookies"
+  ],
   "browser_action": {
     "default_icon": "icons/icon19.png",
     "default_title": "CML Updater",
     "default_popup": "src/browser_action/browser_action.html"
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "css": [
-        "src/inject/inject.css"
-      ]
-    },
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "js": [
-        "js/script.js"
-      ]
-    }
-  ]
+  "content_scripts": [ {
+  "matches": ["https://www.google.com/*"],
+  "js": ["js/script.js"]
+} ]
 }
