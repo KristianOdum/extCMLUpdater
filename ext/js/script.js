@@ -5,8 +5,10 @@ document.getElementById("track").addEventListener("click", p =>{
     xhr.open("GET", url);
     xhr.send();
     xhr.onreadystatechange = p => {
-        if(xhr.readyState === 4 && xhr.status === 200) {
-            document.getElementById("status").innerHTML = "Success"
+        if(document.getElementById("status")) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("status").innerHTML = "Success"
+            }
         }
     }
 });
