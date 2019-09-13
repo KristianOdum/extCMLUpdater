@@ -1,11 +1,11 @@
-document.getElementById("track").addEventListener("click", p =>{
+document.getElementById("track").addEventListener("click", function() {
     document.getElementById("status").innerHTML = "Tracking...";
     const xhr = new XMLHttpRequest();
-    const url = "https://crystalmathlabs.com/tracker/update.php?player=ironodum&time=1d"
-    xhr.open("GET", url);
+    const url = 'https://crystalmathlabs.com/tracker/update.php?player=ironodum&time=1d';
+    xhr.open('GET', url);
     xhr.send();
-    xhr.onreadystatechange = p => {
-        if(document.getElementById("status")) {
+    xhr.onreadystatechange = function() {
+        if (document.getElementById("status")) {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 document.getElementById("status").innerHTML = "Success"
             }
