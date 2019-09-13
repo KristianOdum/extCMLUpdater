@@ -1,8 +1,7 @@
-const Http = new XMLHttpRequest();
-const url='https://jsonplaceholder.typicode.com/posts';
-Http.open("GET", url);
-Http.send();
+function changeUsername() {
+    document.getElementById("Test").value = "Virker!";
+}
 
-Http.onreadystatechange = (e) => {
-    console.log(Http.responseText)
+function Track(Username) {
+
 }
