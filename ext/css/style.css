@@ -1,0 +1,29 @@
+body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(192, 252, 255);
+    margin:0;
+    text-align: center; vertical-align: center; horiz-align: center;
+    border-color: rgb(175,175,175);
+    border: 5px;
+}
+.inner {
+    margin: 5px;
+}
+
+.divider {
+    width: 100%;
+    height: 0;
+    border-top: 1px dashed rgb(175, 175, 175);
+    margin: 5px 0 5px 0;
+}
+
+#UsernameDiv {
+    font-size: 12px;
+    font-weight: bold;
+    height: 20px;
+}
+
+#Track {
+    height: 20px;
+}
