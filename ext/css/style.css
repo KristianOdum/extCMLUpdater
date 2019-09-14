@@ -11,7 +11,7 @@ body {
     width: 100%;
     height: 0;
     border-top: 1px solid rgb(220, 220, 220);
-    margin: 15px 0 15px 0;
+    margin: 5px 0 5px 0;
 }
 
 #UsernameDiv {
@@ -20,9 +20,8 @@ body {
     font-weight: bold;
 }
 
-#instanttrack {
-    border-radius: 4px;
-    background-color: rgb(100,175,215);
+#instantTrack {
+    border-radius: 8px;
 }
 
 #trackbtn {

@@ -1,118 +1,40 @@
 startup();
-var interval;
 var username = "IronOdum";
-var setIntervalms = 900000; // 10 min
+var interval;
+var setIntervalms = 60000; // 10 min
 var timeoutInterval = 1000;
 
-if(document.getElementById("instanttrack")) {
-    document.getElementById("instanttrack").addEventListener("click", function() {
-        document.cookie = "PreviousDate=" + (new Date()).getTime();
-        if(document.getElementsByClassName("progressbar")) {
-            var div = document.getElementById("progressbar");
-            var span = div.getElementsByTagName("span");
-            span[0].style.width = "0%";
-        }
-        updateTimer(setIntervalms);
-        track();
-    });
-}
-
-if(document.getElementById("trackbtn")) {
-    document.getElementById("trackbtn").addEventListener("click", trackbtnclick);
-}
-
-if(document.getElementById("UsernameDisplay")) {
-    document.getElementById("UsernameDisplay").innerText = username;
-}
-
-
-
 function startup() {
-    const status = getCookie("TrackingStatus");
-    var trackbtn = document.getElementById("trackbtn");
-
-    if(status === "running") {
-        trackbtn.innerText = "Pause";
-        trackbtn.style.backgroundColor = "rgb\(200, 150, 150)";
-        interval = startChecking();
-    }
-    else if(status === "paused") {
-        trackbtn.innerText = "Resume";
-        trackbtn.style.backgroundColor = "rgb\(150, 200, 150)";
-    }
+    setEventListeners();
+    setHTML();
+    interval = setInterval(setHTML, timeoutInterval);
 }
 
-function startChecking() {
-    document.cookie = "TrackingStatus=running";
-    document.cookie = "PreviousDate=" + (new Date()).getTime();
-    var elem = document.getElementById("trackbtn");
-    elem.innerText = "Pause";
-    elem.style.backgroundColor = "rgb\(200, 150, 150)";
-    track();
-    return setInterval(Check, timeoutInterval);
+function setEventListeners() {
+    document.getElementById("instantTrack").addEventListener("click", track);
 }
 
-function stopChecking() {
-    document.cookie = "TrackingStatus=paused";
-    var elem = document.getElementById("trackbtn");
-    elem.innerText = "Resume";
-    elem.style.backgroundColor = "rgb\(150, 200, 150)";
-    clearInterval(interval);
+function setHTML() {
+    document.getElementById("UsernameDisplay").innerText = username;
+    updateLastCheck();
 }
 
-function trackbtnclick() {
-    if(document.cookie.includes("TrackingStatus")) {
-        const status = getCookie("TrackingStatus");
+function updateLastCheck() {
+    var d = getLastCheckms();
+    document.getElementById("lastCheck").innerText = msToHHMMSS(d) + " ago";
 
-        if(status === "running") {
-            stopChecking();
-        }
-        else if(status === "paused") {
-            if(interval != null) {
-                clearInterval(interval);
-            }
-            interval = startChecking();
-        }
-    }
-}
-
-function Check() {
-    const now = new Date();
-    const d = (new Date(now.getTime() - fetchCookieDate())).getTime();
-    var timeLeft = setIntervalms - d;
-    if (timeLeft < 0) {
-        timeLeft = 0;
-    }
-
-    if(document.getElementsByClassName("progressbar")) {
-        const width = d / setIntervalms * 100;
-
-        var div = document.getElementById("progressbar");
-        var span = div.getElementsByTagName("span");
-
-        if(width >= 100) {
-            span[0].style.width = "100%";
-        }
-        else {
-            span[0].style.width = width + "%";
-        }
-    }
-
+    var color;
     if(d > setIntervalms) {
-        document.cookie = "PreviousDate=" + (new Date()).getTime();
-        track();
+        color = "rgb(125,225,150)";
     }
-    updateTimer(timeLeft);
+    else {
+        color = "rgb(225,125,150)";
+    }
+    document.getElementById("instantTrack").style.backgroundColor = color;
 }
 
-function updateTimer(ms) {
-    if (document.getElementById("nextCheck")) {
-        if (ms < setIntervalms) {
-            document.getElementById("nextCheck").innerText = msToHHMMSS(ms);
-        } else {
-            document.getElementById("nextCheck").innerText = msToHHMMSS(setIntervalms);
-        }
-    }
+function getLastCheckms() {
+    return new Date().getTime() - getCookie("PreviousDate");
 }
 
 function track() {
@@ -124,19 +46,6 @@ function track() {
 function getCookie(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     if (match) return match[2];
-}
-
-function fetchCookieDate() {
-    var cookieValue;
-
-    if(document.cookie.includes("PreviousDate")) {
-        cookieValue = getCookie("PreviousDate");
-    }
-    else {
-        cookieValue = document.cookie = "PreviousDate=" + new Date();
-    }
-
-    return cookieValue;
 }
 
 function sendCMLRequest(xhr){
